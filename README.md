@@ -38,11 +38,22 @@ python client.py
 python client.py
 ```
 
-Output:
+#### Example: Reasoning Calculation with LLM + MCP Tool
+
+Suppose you ask an LLM:
+> "A watch costs $212,320 and is on sale for 23% off. How much do I need to pay?"
+
+**How the LLM solves it with MCP tools:**
+1. Calls the `multiply` tool to compute the discount: 212320 × 0.23 = 48833.6
+2. Calls the `add` tool to subtract the discount: 212320 - 48833.6 = 163486.4
+
+**Final answer:**
 ```
-5 + 3 = 8
-4 × 7 = 28.0
+You need to pay $163,486.40 after the 23% discount.
 ```
+
+**Benefit:**
+> By leveraging the MCP server's calculation tools, LLMs can solve real-world math and reasoning problems accurately, even for complex or multi-step questions.
 
 ## Integration
 
