@@ -1,0 +1,10 @@
+# FastMCP - Model Context Protocol implementation
+# Note: FastMCP is not available on PyPI, install from GitHub
+git+https://github.com/jlowin/fastmcp.git
+
+# Optional: Additional dependencies for development and testing
+# Uncomment as needed:
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
+# black>=23.0.0
+# ruff>=0.1.0 
