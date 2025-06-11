@@ -41,15 +41,19 @@ python client.py
 #### Example: Reasoning Calculation with LLM + MCP Tool
 
 Suppose you ask an LLM:
-> "A meal costs $18.75 and you want to leave a 15% tip. How much is the total bill?"
+> "You're buying carpet for a rectangular room that's 14 feet by 11 feet. The carpet costs $4.25 per square foot. How much will the carpet cost, and if there's a 7.5% sales tax, what's your total cost?"
 
 **How the LLM solves it with MCP tools:**
-1. Calls the `multiply` tool to compute the tip: 18.75 × 0.15 = 2.8125
-2. Calls the `add` tool to sum meal and tip: 18.75 + 2.8125 = 21.5625
+1. Calls the `multiply` tool to compute the area: 14 × 11 = 154
+2. Calls the `multiply` tool to get the carpet cost: 154 × 4.25 = 654.50
+3. Calls the `percentage` tool to get the sales tax: 7.5% of 654.50 = 49.09
+4. Calls the `add` tool to get the total: 654.50 + 49.09 = 703.59
 
 **Final answer:**
 ```
-You need to pay $21.56 (rounded) including a 15% tip.
+Carpet cost (before tax): $654.50
+Sales tax: $49.09
+Total cost: $703.59
 ```
 
 **Benefit:**
