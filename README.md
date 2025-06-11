@@ -117,8 +117,14 @@ Add to `claude_desktop_config.json`:
 
 ## Tools
 
-- `add(a, b)` - Add two numbers
-- `multiply(a, b)` - Multiply two numbers
+- `add(a, b)` — Add two numbers (supports int/float)
+- `subtract(a, b)` — Subtract second number from first
+- `multiply(a, b)` — Multiply two numbers
+- `divide(a, b)` — Divide first number by second (error if b=0)
+- `power(a, b)` — Raise first number to the power of second
+- `percentage(value, percent)` — Calculate percentage of a value (e.g., 15% of 100)
+- `percentage_increase(value, percent)` — Calculate value with percentage increase (e.g., 100 + 15%)
+- `percentage_decrease(value, percent)` — Calculate value with percentage decrease (e.g., 100 - 15%)
 
 ---
 
