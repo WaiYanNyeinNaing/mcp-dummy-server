@@ -24,6 +24,7 @@ Thumbs.db
 
 # IDE
 .vscode/
+!.vscode/mcp.json  # Include MCP configuration example
 .idea/
 *.swp
 *.swo
