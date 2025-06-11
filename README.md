@@ -38,6 +38,10 @@ pip install -r requirements.txt
 # Optional: Create environment file for configuration
 cp env.example .env
 # Edit .env with your specific paths
+
+# Optional: Set up VS Code workspace configuration
+# Edit .vscode/mcp.json with your actual paths
+# Or configure in VS Code User Settings (JSON)
 ```
 
 ### 3. Run the Server
@@ -168,6 +172,98 @@ Then in `mcp.json`:
 }
 ```
 
+### With VS Code
+
+VS Code uses a different configuration format than Cursor. You can configure MCP servers in two ways:
+
+#### **Method 1: User Settings (Global)**
+Open VS Code Settings → Open Settings (JSON) and add:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "dummy": {
+        "command": "/absolute/path/to/mcp-dummy-server/.venv/bin/python",
+        "args": ["/absolute/path/to/mcp-dummy-server/server.py"],
+        "cwd": "/absolute/path/to/mcp-dummy-server"
+      }
+    }
+  }
+}
+```
+
+#### **Method 2: Workspace Configuration (Recommended)**
+Create `.vscode/mcp.json` in your project root:
+
+```json
+{
+  "servers": {
+    "dummy": {
+      "command": "/absolute/path/to/mcp-dummy-server/.venv/bin/python",
+      "args": ["/absolute/path/to/mcp-dummy-server/server.py"],
+      "cwd": "/absolute/path/to/mcp-dummy-server"
+    }
+  }
+}
+```
+
+#### **Method 3: With Input Prompts (Dynamic Paths)**
+For flexible path configuration in User Settings:
+
+```json
+{
+  "mcp": {
+    "inputs": [
+      {
+        "type": "promptString",
+        "id": "dummy_path",
+        "description": "Path to mcp-dummy-server directory",
+        "default": "/absolute/path/to/mcp-dummy-server"
+      }
+    ],
+    "servers": {
+      "dummy": {
+        "command": "${input:dummy_path}/.venv/bin/python",
+        "args": ["${input:dummy_path}/server.py"],
+        "cwd": "${input:dummy_path}"
+      }
+    }
+  }
+}
+```
+
+#### **Method 4: Environment Variables**
+Create `.vscode/mcp.json` with environment variable support:
+
+```json
+{
+  "servers": {
+    "dummy": {
+      "command": "${env:MCP_DUMMY_PYTHON_PATH}",
+      "args": ["${env:MCP_DUMMY_PATH}/server.py"],
+      "cwd": "${env:MCP_DUMMY_PATH}",
+      "env": {
+        "PYTHONPATH": "${env:MCP_DUMMY_PATH}"
+      }
+    }
+  }
+}
+```
+
+#### **Windows Configuration for VS Code**
+```json
+{
+  "servers": {
+    "dummy": {
+      "command": "C:/path/to/mcp-dummy-server/.venv/Scripts/python.exe",
+      "args": ["C:/path/to/mcp-dummy-server/server.py"],
+      "cwd": "C:/path/to/mcp-dummy-server"
+    }
+  }
+}
+```
+
 ### With Claude Desktop
 
 #### **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
@@ -204,6 +300,17 @@ Then in `mcp.json`:
   }
 }
 ```
+
+### Key Differences: VS Code vs Cursor vs Claude Desktop
+
+| Feature | VS Code | Cursor | Claude Desktop |
+|---------|---------|---------|----------------|
+| **Config File** | `.vscode/mcp.json` or User Settings | `~/.cursor/mcp.json` | `claude_desktop_config.json` |
+| **Format** | `{ "servers": {...} }` | `{ "mcpServers": {...} }` | `{ "mcpServers": {...} }` |
+| **Input Prompts** | ✅ Supported | ❌ Not supported | ❌ Not supported |
+| **Environment Variables** | ✅ `${env:VAR}` | ✅ Via shell | ✅ Via shell |
+| **Workspace Config** | ✅ Per-project | ❌ Global only | ❌ Global only |
+| **Path Variables** | ✅ `${workspaceFolder}` | ❌ Absolute paths | ❌ Absolute paths |
 
 ### Environment Setup Tips
 
@@ -243,6 +350,29 @@ python --version
 # Test server manually
 python server.py --verbose
 ```
+
+#### **VS Code Specific Troubleshooting**
+```bash
+# Check if MCP extension is installed
+# VS Code → Extensions → Search "MCP" or "Model Context Protocol"
+
+# Verify VS Code settings location
+# macOS: ~/Library/Application Support/Code/User/settings.json
+# Windows: %APPDATA%\Code\User\settings.json
+# Linux: ~/.config/Code/User/settings.json
+
+# Check workspace configuration
+ls .vscode/mcp.json
+
+# Test with absolute paths first, then use variables
+# Use forward slashes even on Windows in JSON files
+```
+
+#### **Common VS Code Issues**
+- **MCP extension not installed**: Install the official MCP extension from VS Code marketplace
+- **Configuration not loading**: Restart VS Code after configuration changes  
+- **Path variables not resolving**: Use absolute paths first to test, then implement variables
+- **Workspace vs User settings**: Workspace settings (`.vscode/mcp.json`) override User settings
 
 ---
 
@@ -309,6 +439,8 @@ mcp-dummy-server/
 ├── Learning.md        # Educational background on MCP concepts
 ├── .gitignore         # Git ignore patterns
 ├── env.example        # Environment variables template (copy to .env)
+├── .vscode/           # VS Code workspace configuration (optional)
+│   └── mcp.json       # VS Code MCP server configuration
 └── .venv/             # Virtual environment (created during setup)
 ```
 
