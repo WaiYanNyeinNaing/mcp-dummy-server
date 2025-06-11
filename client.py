@@ -8,11 +8,11 @@ async def test_server():
     async with Client("./server.py") as client:
         # Test add tool
         result = await client.call_tool("add", {"a": 5, "b": 3})
-        print(f"5 + 3 = {result.text}")
+        print(f"5 + 3 = {result[0].text}")
         
         # Test multiply tool
         result = await client.call_tool("multiply", {"a": 4, "b": 7})
-        print(f"4 × 7 = {result.text}")
+        print(f"4 × 7 = {result[0].text}")
 
 if __name__ == "__main__":
     asyncio.run(test_server()) 
