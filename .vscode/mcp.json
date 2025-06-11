@@ -1,9 +1,0 @@
-{
-  "servers": {
-    "dummy": {
-      "command": "/absolute/path/to/mcp-dummy-server/.venv/bin/python",
-      "args": ["/absolute/path/to/mcp-dummy-server/server.py"],
-      "cwd": "/absolute/path/to/mcp-dummy-server"
-    }
-  }
-} 
