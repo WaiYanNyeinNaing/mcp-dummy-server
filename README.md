@@ -41,19 +41,19 @@ python client.py
 #### Example: Reasoning Calculation with LLM + MCP Tool
 
 Suppose you ask an LLM:
-> "A watch costs $212,320 and is on sale for 23% off. How much do I need to pay?"
+> "A meal costs $18.75 and you want to leave a 15% tip. How much is the total bill?"
 
 **How the LLM solves it with MCP tools:**
-1. Calls the `multiply` tool to compute the discount: 212320 × 0.23 = 48833.6
-2. Calls the `add` tool to subtract the discount: 212320 - 48833.6 = 163486.4
+1. Calls the `multiply` tool to compute the tip: 18.75 × 0.15 = 2.8125
+2. Calls the `add` tool to sum meal and tip: 18.75 + 2.8125 = 21.5625
 
 **Final answer:**
 ```
-You need to pay $163,486.40 after the 23% discount.
+You need to pay $21.56 (rounded) including a 15% tip.
 ```
 
 **Benefit:**
-> By leveraging the MCP server's calculation tools, LLMs can solve real-world math and reasoning problems accurately, even for complex or multi-step questions.
+> By leveraging the MCP server's calculation tools, LLMs can solve real-world math and reasoning problems accurately, even for decimal and multi-step questions.
 
 ## Integration
 
