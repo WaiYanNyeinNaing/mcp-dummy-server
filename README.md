@@ -2,6 +2,8 @@
 
 A professional, minimal example of a [FastMCP](https://github.com/jlowin/fastmcp) server for learning and experimentation.
 
+**Author:** Dr. Wai Yan Nyein Naing
+
 ## ✨ Features
 
 - **Dual Transport Support**: Both STDIO and HTTP transports via command-line arguments
@@ -237,6 +239,13 @@ Once you have this working:
 2. **Add resources**: Use `@mcp.resource` for providing static or dynamic data
 3. **Add authentication**: Implement bearer token authentication for production use
 4. **Deploy to production**: Use the HTTP mode for web-based integrations
+
+---
+
+## 👨‍⚕️ Author
+
+**Dr. Wai Yan Nyein Naing**  
+*Learning and experimenting with the Model Context Protocol ecosystem*
 
 ---
 
