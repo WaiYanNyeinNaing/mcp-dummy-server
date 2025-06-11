@@ -23,15 +23,25 @@ pip install -r requirements.txt
 
 ### 2. Test
 
+**Option 1: Start server first (recommended for learning)**
 ```bash
-# Test the server
+# Terminal 1: Start the server
+python server.py
+
+# Terminal 2: Run the client
+python client.py
+```
+
+**Option 2: Auto-start (client starts server automatically)**
+```bash
+# Client automatically starts the server
 python client.py
 ```
 
 Output:
 ```
 5 + 3 = 8
-4 × 7 = 28
+4 × 7 = 28.0
 ```
 
 ## Integration
